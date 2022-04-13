@@ -15,6 +15,7 @@
     <%- include('./partials/header.ejs') %>
 
         <div class="body-content">
+            <img class="delete" data-id="<%= blog.id %>" src="/delete_black_24dp.svg" alt="delete">
             <H3 class="title">
                 <%= blog.title %>
             </H3>
@@ -26,5 +27,16 @@
         <%- include('./partials/footer.ejs') %>
 
 </body>
+
+<script>
+    const trashcam = document.querySelector('.delete');
+    trashcam.addEventListener('click', () => {
+        console.log('kuni click');
+        fetch(`/blogs/${trashcam.dataset.id}`, { method: 'DELETE' })
+            .then(result => result.json())
+            .then(data => document.location.pathname = data.redirect)
+            .catch(err => console.log(err))
+    });
+</script>
 
 </html>

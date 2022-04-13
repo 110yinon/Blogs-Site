@@ -10,15 +10,15 @@
 <body>
     <%- include('./partials/header.ejs') %>
     
-    <form action="">
+    <form action="/blogs" method="POST">
         <label for="title">Blog Title:</label>
-        <input type="text" size="35" id="title">
+        <input type="text" size="35" id="title" name="title">
         <label for="title">Blog Snippet:</label>
         <!-- <input type="text" size="35" id="snippet"> -->
-        <input type="text" id="snippet">
+        <input type="text" id="snippet" name="snippet">
         <label for="title">Blog Body:</label>
         <!-- <textarea id="body" cols="35" rows="6"></textarea> -->
-        <textarea id="body" ></textarea>
+        <textarea id="body" name="body"></textarea>
         <input type="submit" class="btn" value="Submit">
     </form>
     
