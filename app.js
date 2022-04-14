@@ -1,8 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
-
+const blogRoutes = require('./routes/blogRoutes');
+const errorsController = require('./controllers/errorsController');
 
 // express app
 const app = express();
@@ -20,36 +20,10 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
+
+// routes
 app.get('/', (req, res) => {
-    Blog.find()
-        .then(result => {
-            console.log(result);
-            res.render('index', { title: 'Home', blogs: result });
-        })
-        .catch(err => console.log(err))
-});
-
-app.get('/blogs', (req, res) => {
-    res.redirect('/');
-});
-
-app.post('/blogs', (req, res) => {
-    const blog = new Blog(req.body);
-    blog.save()
-        .then(result => {
-            console.log('blog added:\n', result);
-            res.redirect('/');
-        })
-        .catch(err => console.log(err))
-});
-
-app.delete('/blogs/:id', (req, res) => {
-    Blog.findByIdAndRemove(req.params.id)
-        .then(result => {
-            console.log(result);
-            res.json({ redirect: '/' });
-        })
-        .catch(err => console.log(err))
+    res.redirect('/blogs');    
 });
 
 app.get('/about', (req, res) => {
@@ -60,19 +34,8 @@ app.get('/blog', (req, res) => {
     res.render('create', { title: 'Create' });
 });
 
-app.get('/blogs/:id', (req, res, next) => {
-    Blog.findById(req.params.id)
-        .then(result => {
-            console.log(result);
-            res.render('blog', { title: 'Blog', blog: result });
-        })
-        .catch(err => {
-            console.log(err);
-            next();
-        })
+// blogs routes
+app.use('/blogs',blogRoutes);
 
-});
-
-app.use((req, res) => {
-    res.status(404).render('404', { title: 'Page not found' });
-});
+// 404 page
+app.use(errorsController.page_not_found);

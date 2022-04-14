@@ -31,6 +31,12 @@ nav>a {
     padding-inline: 10px;
 }
 
+nav>a:hover{
+    color:grey;
+    border-bottom: 2px solid grey;
+    padding-bottom: 5px;
+}
+
 .blog-list {
     margin-top: 30px;
     padding-left: 30px;
