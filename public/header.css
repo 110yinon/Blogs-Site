@@ -1,0 +1,27 @@
+.site-header {
+    color: black;
+    margin-left: 15px;
+}
+
+.site-subheader {
+    margin-left: 15px;
+    color: #aeaeae;
+    /* margin-bottom: -10px; */
+}
+
+nav {
+    text-align: right;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.6);
+}
+nav>a {
+    text-decoration-line: none;
+    padding-inline: 10px;
+    color: #aeaeae;
+}
+
+nav>a:hover{
+    color:grey;
+    border-bottom: 2px solid grey;
+    padding-bottom: 5px;
+}
