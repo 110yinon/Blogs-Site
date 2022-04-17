@@ -1,0 +1,114 @@
+.border{
+    margin-inline: auto;
+    width: 270px;
+    border-top: 2px solid black;
+    margin-top: -145px;
+    text-align: center;
+}
+
+.fourofour {
+    text-align: center;
+    margin: 100px;
+}
+.digit1,
+.digit2,
+.digit3 {
+    display: inline-block;
+    margin: 30px;
+    font-size: 72px;
+    font-weight: bolder;
+    /* transform: rotate(30deg); */
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.digit1 {
+    animation-name: kuni1;
+    animation-duration: 1s;
+}
+
+.digit2 {
+    animation-name: kuni2;
+    animation-duration: 1s;
+}
+
+.digit3 {
+    animation-name: kuni3;
+    animation-duration: 1s;
+}
+
+@keyframes kuni1 {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(0px, -100px);
+    }
+
+    50% {
+        transform: translate(0px, -120px);
+    }
+
+    75% {
+        transform: translate(0px, -15px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes kuni2 {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    25% {
+        transform: translate(0px, -30px);
+    }
+
+    50% {
+        transform: translate(0px, -120px);
+    }
+
+    75% {
+        transform: translate(0px, -60px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes kuni3 {
+    0% {
+        transform: translate(0px, 0px);
+        /* transform: rotate(0deg); */
+    }
+
+    25% {
+        transform: translate(0px, -10px);
+        /* transform: rotate(0deg); */
+    }
+
+    50% {
+        transform: translate(0px, -25px);
+        /* transform: rotate(0deg); */
+    }
+
+    75% {
+        transform: translate(0px, -120px);
+        /* transform: rotate(0deg); */
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        /* transform: rotate(30deg); */
+    } 
+}
+
+
+
+
+
