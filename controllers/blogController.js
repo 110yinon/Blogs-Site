@@ -1,4 +1,7 @@
 const Blog = require('../models/blog');
+const errorsController = require('./errorsController');
+const { writeCrash } = require('../writeCrash');
+
 
 const blog_index = (req, res) => {
     Blog.find()
@@ -31,12 +34,18 @@ const delete_blog = (req, res) => {
 const blog_details = (req, res, next) => {
     Blog.findById(req.params.id)
         .then(result => {
-            console.log(result);
+            console.log(`\n-------------resolved------------\n${result}\n`);
+            console.log('-------------------------------------');
             res.render('blog', { title: 'Blog', blog: result });
         })
         .catch(err => {
+            console.log('\n\n\nblog_details Error - findById failed:');
             console.log(err);
-            next();
+            console.log('-------------------------------------');
+            const errStr = `stack:\n${err.stack}\nmessageFormat: ${err.messageFormat},\nstringValue: ${err.stringValue},\nkind: ${err.kind},\nvalue: ${err.value},\npath: ${err.path},\nreason: ${err.reason.stack},\nvalueType: ${err.valueType}\n\n\n\n\n`;
+            writeCrash(errStr);
+
+            errorsController.page_not_found(req, res);
         })
 
 }
