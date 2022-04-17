@@ -28,7 +28,10 @@ const delete_blog = (req, res) => {
             console.log(result);
             res.json({ redirect: '/' });
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err);
+            res.json({ err });
+        })
 }
 
 const blog_details = (req, res, next) => {
