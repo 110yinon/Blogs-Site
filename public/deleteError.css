@@ -1,0 +1,70 @@
+.error-bg {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.error-box {
+    cursor: pointer;
+    background-color: aliceblue;
+    margin: 35vh auto;
+    text-align: center;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 1px 10px 25px 1px grey;
+}
+
+.error-logo>img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.error-logo {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: crimson;
+    padding: 10px;
+}
+
+.error-description {
+    border-bottom: 20px;
+}
+
+.error-description>h3 {
+    margin: 10px auto;    
+}
+
+.error-description>p {
+    margin: 0px auto;
+    padding-bottom: 20px;
+}
+
+.blur{
+    filter: blur(2px);
+}
+
+/* .delete-error{
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    
+} */
+/* .error-box{
+    position: relative;
+    background-color: crimson;
+    margin: 35vh auto;
+    text-align: center;
+    width: 200px;
+    padding: 30px;
+    border-radius: 20px;
+    color: azure;  
+    filter: none;
+
+} */

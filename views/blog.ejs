@@ -8,6 +8,7 @@
     <title>Blog Site | <%= title %>
     </title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/deleteError.css">
 </head>
 
 <body>
@@ -15,28 +16,72 @@
     <%- include('./partials/header.ejs') %>
 
         <div class="body-content">
-            <img class="delete" data-id="<%= blog.id %>" src="/delete_black_24dp.svg" alt="delete">
-            <H3 class="title">
+            <img class="delete" data-id="<%= blog.id %>" src="/icons/delete_black_24dp.svg" alt="delete">
+            <H3 class="blog-title">
                 <%= blog.title %>
             </H3>
-            <div class="body">
+            <div class="blog-body">
                 <%= blog.body %>
             </div>
         </div>
+
+        <div class="error-bg">
+            <div class="error-box">
+                <div class="error-logo">
+                    <img src="/icons/report_problem_white_24dp.svg" alt="warning logo">
+                </div>
+                <div class="error-description">
+                    <h3>Oops !!! </h3>
+                    <p>Blog deletion failed<br>
+                        try again later
+                    </p>
+                </div>
+            </div>
+        </div>
+
 
         <%- include('./partials/footer.ejs') %>
 
 </body>
 
 <script>
+
     const trashcam = document.querySelector('.delete');
+    const errBg = document.querySelector('.error-bg');
+    const header = document.querySelector('.header');
+    const bodyContent = document.querySelector('.body-content');
+
     trashcam.addEventListener('click', () => {
+
         console.log('kuni click');
+
         fetch(`/blogs/${trashcam.dataset.id}`, { method: 'DELETE' })
+
             .then(result => result.json())
-            .then(data => document.location.pathname = data.redirect)
+
+            .then(data => {
+
+                if (data.redirect)
+                    document.location.pathname = data.redirect
+
+                else {
+
+                    console.log('delete failed');
+                    errBg.style.display = 'block';
+                    header.classList.add('blur');
+                    bodyContent.classList.add('blur');
+
+                    errBg.addEventListener('click', () => {
+                        errBg.style.display = 'none';
+                        header.classList.remove('blur');
+                        bodyContent.classList.remove('blur');
+                    });
+                }
+            })
             .catch(err => console.log(err))
     });
+
+
 </script>
 
 </html>
