@@ -25,11 +25,16 @@ const create_blog = (req, res) => {
 const delete_blog = (req, res) => {
     Blog.findByIdAndRemove(req.params.id)
         .then(result => {
-            console.log(result);
+            console.log(`\n-------------resolved------------\n${result}\n`);
+            console.log('-------------------------------------');
             res.json({ redirect: '/' });
         })
         .catch(err => {
+            console.log('\n\n\ndelete_blog Error - findByIdAndRemove failed:');
             console.log(err);
+            console.log('-------------------------------------');
+            const errStr = `stack:\n${err.stack}\nmessageFormat: ${err.messageFormat},\nstringValue: ${err.stringValue},\nkind: ${err.kind},\nvalue: ${err.value},\npath: ${err.path},\nreason: ${err.reason.stack},\nvalueType: ${err.valueType}\n\n\n\n\n`;
+            writeCrash(errStr);
             res.json({ err });
         })
 }
