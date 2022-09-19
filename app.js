@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
@@ -11,9 +12,12 @@ const app = express();
 // register view engine
 app.set('view engine', 'ejs');
 
+const port = 3000 | process.env.PORT;
+
 // listen for requests & db connection
-mongoose.connect('mongodb://localhost:27017/myDB')
-    .then(result => app.listen(3000, () => console.log('listening on port 3000')))
+mongoose.connect(process.env.MONGO_URI)
+    // .then(result => app.listen(process.env.PORT, () => console.log(`listening on port ${process.env.PORT}`)))
+    .then(result => app.listen(port, () => console.log(`listening on port ${port}`)))
     .catch(err => {
         console.log('\n\n\n--------- failed to connect to DB---------');
         console.log(err.stack)
